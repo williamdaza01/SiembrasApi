@@ -45,5 +45,24 @@ def siembrasApi(request, id=0):
         siembras = Siembras.objects.all()
         siembras_serializer = SiembrasSerializer(siembras, many=True)
         return JsonResponse(siembras_serializer.data, safe=False)
+    elif request.method == 'POST':
+        siembras_data = JSONParser().parse(request)
+        siembras_serializer = SiembrasSerializer(data=siembras_data)
+        if siembras_serializer.is_valid():
+            siembras_serializer.save()
+            return JsonResponse("Siembra agregada exitosamente", safe=False)
+        return JsonResponse("Error al agregar siembra", safe=False)
+    elif request.method == 'PUT':
+        siembras_data = JSONParser().parse(request)
+        siembras = Siembras.objects.get(codigo=siembras_data['codigo'])
+        siembras_serializer = SiembrasSerializer(siembras,data=siembras_data)
+        if siembras_serializer.is_valid():
+            siembras_serializer.save()
+            return JsonResponse("Siembra actualizada exitosamente", safe=False)
+        return JsonResponse("Error al actualizar siembra", safe=False)
+    elif request.method == 'DELETE':
+        siembras = Siembras.objects.get(codigo=id)
+        siembras.delete()
+        return JsonResponse("Siembra eliminada exitosamente", safe=False)
     else:
         print("error")
