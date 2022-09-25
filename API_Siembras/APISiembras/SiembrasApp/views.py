@@ -16,6 +16,7 @@ def municipiosApi(request, id=0):
     else:
         print("error")
 
+@csrf_exempt
 def arbolesApi(request, id=0):
     if request.method == 'GET':
         arboles = Arboles.objects.all()
@@ -24,6 +25,7 @@ def arbolesApi(request, id=0):
     else:
         print("error")
 
+@csrf_exempt
 def contratistasApi(request, id=0):
     if request.method == 'GET':
         contratistas = Contratistas.objects.all()
@@ -32,6 +34,7 @@ def contratistasApi(request, id=0):
     else:
         print("error")
 
+@csrf_exempt
 def veredasApi(request, id=0):
     if request.method == 'GET':
         veredas = Veredas.objects.all()
@@ -40,6 +43,7 @@ def veredasApi(request, id=0):
     else:
         print("error")
 
+@csrf_exempt
 def siembrasApi(request, id=0):
     if request.method == 'GET':
         siembras = Siembras.objects.all()
