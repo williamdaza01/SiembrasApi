@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from SiembrasApp import views
 
 urlpatterns=[
@@ -11,5 +11,5 @@ urlpatterns=[
     path('contratistas/', views.contratistasApi),
     path('contratistas/([0-9]+)', views.contratistasApi),
     path('siembras/', views.siembrasApi),
-    path('siembras/([0-9]+)', views.siembrasApi),
+    re_path(r'^siembras/([0-9]+)$', views.siembrasApi),
 ]
